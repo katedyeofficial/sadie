@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Component name="HomeScene" extends="Scene">
+    <interface>
+        <field id="token" type="string" />
+        <field id="userID" type="string" />
+    </interface>
+    <children>
+        <Label text="Welcome to Stremio" translation="[50,50]" font="font:MediumBoldSystemFont" />
+        <Button id="loginButton" text="Login / Register" translation="[50,100]" />
+        <Button id="contentButton" text="Browse Content" translation="[50,150]" />
+    </children>
+    <script type="text/brightscript" uri="pkg:/source/HomeScene.brs" />
+</Component>
