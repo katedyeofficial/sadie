@@ -1,0 +1,28 @@
+name: Roku CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout Code
+      
+    - name: Zip Roku files
+      run: zip -r application.zip ./ -x "*.git*"
+
+    - name: Deploy to Roku
+      uses: RokuRoad/brightscript-deploy-action@v1
+      with:
+        roku_dev_id: ${{ secrets.ROKU_DEV_ID }}
+        roku_dev_password: ${{ secrets.ROKU_DEV_PASSWORD }}
+        roku_dev_target: ${{ secrets.ROKU_DEV_TARGET }}
+        package_file_path: './application.zip'
+        fail_on_error: true
